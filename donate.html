@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Donate | Children's Hope</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts for consistency -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="donate.css">
+  
+</head>
+<body>
+    <div class="bg-animation">
+        <div class="bg-animation__circle"></div>
+        <div class="bg-animation__circle"></div>
+        <div class="bg-animation__circle"></div>
+    </div>
+    <header class="main-header">
+        <a href="index.html" class="logo">Children's Hope</a>
+        <a href="index.html" class="back-home-btn">Back to Home</a>
+    </header>
+    <div class="donate-main">
+        <div class="donate-container">
+            <h1>Make a Donation</h1>
+            <p>Your support helps us provide education, meals, and healthcare for children in need. Every contribution counts!</p>
+          <!-- Replace the existing form content with this -->
+<form class="donate-form" id="donateForm" autocomplete="off">
+    <label for="goal">Fund a Specific Need (optional)</label>
+    <select id="goal" name="goal">
+        <option value="">-- Select a goal --</option>
+        <option value="uniforms">School Uniforms for 50 Children</option>
+        <option value="meals">A Week of Nutritious Meals</option>
+        <option value="medical">Essential Medical Supplies</option>
+        <option value="books">Books & Learning Materials</option>
+    </select>
+
+    <label>Donation Amount</label>
+    <div class="amount-options">
+        <button type="button" class="amount-btn" data-amount="100">₦100</button>
+        <button type="button" class="amount-btn" data-amount="500">₦500</button>
+        <button type="button" class="amount-btn" data-amount="0">Other</button>
+    </div>
+    <input type="number" id="customAmount" name="amount" min="100" step="100" placeholder="Enter amount (₦)" required style="display:none;">
+    <!-- Add this right after the customAmount input -->
+
+    <!-- Add this new button -->
+    <button type="submit" class="submit-btn continue-btn">Continue</button>
+
+    
+    
+    <!-- Replace the bank-details div with this updated version -->
+    <div class="bank-details" style="display: none;">
+        <h3>Bank Transfer Details</h3>
+        <div class="bank-info">
+            <p><strong>Bank Name:</strong> First Bank of Nigeria</p>
+            <p><strong>Account Name:</strong> Children's Hope Foundation</p>
+            <p><strong>Account Number:</strong> 1234567890</p>
+            
+        </div>
+        <div class="transfer-instructions">
+            <p>1. Make a transfer to the account above</p>
+            <p>2. Click "I've Made the Transfer" button below</p>
+        </div>
+        <button type="button" class="submit-btn">I've Made the Transfer</button>
+    </div>
+</form>
+        </div>
+    </div>
+    <footer style="background-color: #333; color: white; text-align: center; padding: 20px; margin-top: 50px;">
+        <p>&copy; 2025 Children's Hope Foundation. All rights reserved.</p>
+    </footer>
+    <script src="donate.js"></script>
+</body>
+</html>

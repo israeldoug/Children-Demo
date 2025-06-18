@@ -1,0 +1,447 @@
+/* Inherit global styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #2c3e50;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Background Animation */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bg-animation__circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    filter: blur(30px);
+    animation: floatCircle 15s infinite;
+}
+
+/* Inherit header styles from main site */
+.main-header {
+    width: 100%;
+    padding: 15px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    gap: 20px;
+}
+
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2c3e50;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Update the back-home-btn styles to match donate.css */
+.back-home-btn {
+    background: #e9f7ef;
+    color: #2c3e50;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    padding: 12px 24px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, box-shadow 0.3s, transform 0.2s;
+    box-shadow: none;
+    cursor: pointer;
+    outline: none;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.back-home-btn:hover,
+.back-home-btn:focus {
+    background: #e9f7ef;
+    color: #28a745;
+    box-shadow: 0 0 16px 0 rgba(44, 62, 80, 0.33);
+}
+
+.back-home-btn:active {
+    background: #e9f7ef;
+    color: #28a745;
+    box-shadow: 0 0 8px 0 rgba(44, 62, 80, 0.22);
+}
+
+/* === ARROW STYLES FOR LARGER SCREENS (RESTORED) === */
+@media (min-width: 769px) {
+    .back-home-btn::before {
+        content: "←";
+        margin-right: 8px;
+        font-size: 1.2em;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        transform: translateY(-1px);
+    }
+}
+/* === END OF RESTORED BLOCK === */
+
+
+/* === RESPONSIVE STYLES FOR SMALLER SCREENS === */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+    
+    .back-home-btn {
+        font-size: 0.8em;
+        padding: 8px 12px;
+    }
+}
+/* === END OF RESPONSIVE BLOCK === */
+
+/* Thank You Container Styles */
+.thank-you-container {
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Heart Animation */
+.heart-animation {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: heartBeat 1.5s infinite;
+}
+
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    14% { transform: scale(1.3); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.3); }
+    70% { transform: scale(1); }
+}
+
+/* Text Animations */
+.animate-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeInUp 0.8s forwards;
+}
+
+/* Replace the existing sparkle-text styles with these */
+/* Replace only the sparkle-text styles and its keyframes */
+/* Replace the sparkle-text styles with these updated ones */
+.sparkle-text {
+    display: inline-block;
+    position: relative;
+    font-weight: bold;
+    padding-bottom: 4px;
+    background: linear-gradient(
+        90deg,
+        #28a745,
+        #2c3e50,
+        #28a745,
+        #2c3e50,
+        #28a745
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: sparkle 3s linear infinite;
+}
+
+
+
+@keyframes sparkle {
+    to {
+        background-position: 200% center;
+    }
+}
+.animate-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+.animate-up:nth-child(2) { animation-delay: 0.2s; }
+.animate-up:nth-child(3) { animation-delay: 0.4s; }
+.animate-up:nth-child(4) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Message Box Styles */
+.message-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(42, 122, 228, 0.07);
+    margin: 30px 0;
+}
+
+.impact-message {
+    font-size: 1.2rem;
+    color: #28a745;
+    font-weight: 600;
+}
+
+/* Confirmation Details */
+.confirmation-details {
+    background: #e9f7ef;
+    padding: 30px;
+    border-radius: 16px;
+    margin: 30px 0;
+}
+
+.confirmation-details ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+.confirmation-details li {
+    padding: 10px 0;
+    padding-left: 30px;
+    position: relative;
+}
+
+.confirmation-details li::before {
+    content: "✓";
+    color: #28a745;
+    position: absolute;
+    left: 0;
+}
+
+/* Button Styles */
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.primary-button, .secondary-button {
+    background: #e9f7ef;
+    color: #2c3e50;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    padding: 12px 24px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.primary-button:hover, .secondary-button:hover {
+    background: #e9f7ef;
+    color: #28a745;
+    box-shadow: 0 0 16px 0 rgba(44, 62, 80, 0.33);
+    transform: translateY(-2px);
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    margin-top: 60px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .thank-you-container {
+        padding: 20px;
+    }
+
+    .animate-text {
+        font-size: 2rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Add after existing styles */
+
+/* Letter animation for thank you message */
+/* .animate-text .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+} */
+
+/* Enhanced heart animation */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Background particles */
+.background-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #28a745;
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: floatParticle 8s linear infinite;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.3); /* Added glow effect */
+}
+
+
+/* Add variety to particles */
+.particle:nth-child(3n) {
+    background: #28a745;  /* Every 3rd particle blue */
+    width: 12px;
+    height: 12px;
+}
+
+.particle:nth-child(3n+1) {
+    background: #2c3e50;  /* Every 1st particle green */
+    animation-duration: 12s;
+}
+
+.particle:nth-child(3n+2) {
+    background: #2c3e50;  /* Every 2nd particle dark */
+    width: 6px;
+    height: 6px;
+    animation-duration: 10s;
+}
+
+@keyframes floatParticle {
+    0% {
+        transform: translateY(100vh) translateX(0) scale(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.4;
+    }
+    80% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(-100px) translateX(100px) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Update responsive adjustments */
+@media (max-width: 768px) {
+    .particle {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .particle:nth-child(3n) {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Donation amount display */
+.donation-amount {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(40, 167, 69, 0.1);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.amount-label {
+    font-size: 1.4em;
+    color: #2c3e50;
+    font-weight: bold;
+}
+
+.amount-value {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #28a745;
+    font-family: 'Poppins', sans-serif;
+    padding-bottom: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Enhanced list animations */
+.confirmation-details li::before {
+    transition: transform 0.3s ease;
+}
+
+.confirmation-details li {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Button hover effects */
+.primary-button, .secondary-button {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .particle {
+        width: 4px;
+        height: 4px;
+    }
+    
+}
+
+/* Stack donation amount on very narrow screens to prevent overflow */
+@media (max-width: 360px) {
+    .donation-amount {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

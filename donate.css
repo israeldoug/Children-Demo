@@ -1,0 +1,567 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+:root {
+    --primary: #2a7ae4;
+    --primary-dark: #174a8c;
+    --accent: #f9b233;
+    --bg: #f4f4f4;
+    --white: #fff;
+    --shadow: 0 4px 24px rgba(42, 122, 228, 0.07);
+    --radius: 16px;
+    --navbar-green: #28a745;
+    --navbar-green-dark: #218838;
+    --navbar-blue: #007bff;
+}
+/* Add after the :root variables */
+
+/* Add these new classes */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bg-animation__circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15; /* Increased from 0.04 */
+    animation: floatCircle 15s infinite; /* Reduced from 20s for more noticeable movement */
+    filter: blur(30px); /* Add subtle blur for a glowing effect */
+}
+
+.bg-animation__circle:nth-child(1) {
+    width: 400px;
+    height: 400px;
+    background: var(--primary);
+    top: -5%;
+    left: -5%;
+    animation-delay: 0s;
+}
+
+.bg-animation__circle:nth-child(2) {
+    width: 500px;
+    height: 500px;
+    background: var(--navbar-green);
+    bottom: -10%;
+    right: -5%;
+    animation-delay: -5s;
+}
+
+.bg-animation__circle:nth-child(3) {
+    width: 300px;
+    height: 300px;
+    background: var(--accent);
+    top: 40%;
+    left: 30%;
+    animation-delay: -10s;
+}
+
+/* Update the floatCircle animation for more dramatic movement */
+@keyframes floatCircle {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(50px, -50px) scale(1.2); /* Increased movement and scale */
+    }
+    66% {
+        transform: translate(-40px, 40px) scale(0.8); /* Increased movement */
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: #222;
+    transition: background 0.4s;
+}
+.main-header {
+    width: 100%;
+    padding: 15px 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    animation: fadeDown 0.7s cubic-bezier(.4,0,.2,1);
+}
+@keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-30px);}
+    to { opacity: 1; transform: translateY(0);}
+}        
+.logo {
+    font-family: 'Poppins', sans-serif;
+    /* --- CHANGE 1: Switched to rem for predictability --- */
+    font-size: 1.6rem; 
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration: none;
+    letter-spacing: 1px;
+    display: inline-flex; /* Helps with alignment */
+    align-items: center;  /* Helps with alignment */
+}
+.logo::after {
+    content: '';
+    display: inline-block;
+    /* --- CHANGE 2: Switched to rem for predictability --- */
+    width: 1.3rem;
+    height: 1.3rem;
+    background: url('Images/logo.svg') no-repeat center center/contain;
+    margin-left: 0.5rem;
+    transition: width 0.3s, height 0.3s;
+}       
+.back-home-btn {
+    margin-left: auto; /* Push to the right */
+    color: #2c3e50; /* Primary Text Color from homepage */
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 8px 16px;
+    min-height: 40px;
+}
+/* Only show arrow on desktop */
+@media (min-width: 769px) {
+    .back-home-btn::before {
+        content: "←";
+        margin-right: 8px;
+        font-size: 1.2em;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+        transform: translateY(-1px); /* Fine-tune vertical alignment */
+    }
+
+    
+}
+.donate-main {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    padding: 40px 0;
+    animation: fadeIn 1s cubic-bezier(.4,0,.2,1);
+    position: relative
+}
+@keyframes fadeIn {
+    from { opacity: 0;}
+    to { opacity: 1;}
+}
+.donate-container {
+    max-width: 440px;
+    width: 100%;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 2.7rem 2rem 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: popUp 0.7s 0.2s cubic-bezier(.4,0,.2,1) forwards;
+    transition: box-shadow 0.5s cubic-bezier(.4,0,.2,1), filter 0.5s cubic-bezier(.4,0,.2,1), transform 0.3s;
+}
+@keyframes popUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.donate-container:hover {
+    box-shadow: 0 0 12px 0 rgba(40, 167, 69, 0.12), 0 4px 24px rgba(42, 122, 228, 0.07);
+    filter: drop-shadow(0 0 6px rgba(40, 167, 69, 0.10));
+    transform: translateY(0) scale(1.01);
+}
+.donate-container::before {
+    content: "";
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 140px; height: 140px;
+    background: linear-gradient(135deg, var(--primary) 60%, var(--accent) 100%);
+    opacity: 0.06;
+    border-radius: 50%;
+    z-index: 0;
+    animation: floatBg 5s infinite alternate ease-in-out;
+}
+@keyframes floatBg {
+    from { transform: scale(1) translateY(0);}
+    to { transform: scale(1.08) translateY(10px);}
+}
+.donate-container h1 {
+    margin-top: 0;
+    font-size: 2.1rem;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 1.2s cubic-bezier(.4,0,.2,1);
+}
+.donate-container p {
+    color: #555;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 1.3s cubic-bezier(.4,0,.2,1);
+}
+.donate-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #28a745;
+    opacity: 0;
+    animation: fadeIn 0.7s 0.3s forwards;
+    animation-delay: 0.3s;
+}
+.donate-form input[type="number"],
+.donate-form select {
+    width: 100%;
+    padding: 0.7rem;
+    margin-bottom: 1.2rem;
+    border: 1.5px solid #d0d0d0;
+    border-radius: 7px;
+    font-size: 1rem;
+    background: #fafbfc;
+    color: #222;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.donate-form input[type="number"]:focus,
+.donate-form select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(42,122,228,0.08);
+    outline: none;
+}
+.donate-form select:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 16px 2px rgba(42, 123, 228, 0.192);
+    background-color: #f0f7ff;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.donate-form .amount-options {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+.donate-form .amount-btn {
+    flex: 1;
+    padding: 12px 0;
+    background: #f4f4f4;
+    border: 1.5px solid #d0d0d0;
+    border-radius: 7px;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--primary-dark);
+    transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.15s;
+    box-shadow: 0 0 0 0 rgba(42,122,228,0);
+    will-change: transform;
+}
+/* --- EXACT NAVBAR ACTIVE LINK STYLE FOR ALL BUTTONS --- */
+.donate-form .amount-btn,
+.donate-form button[type="submit"],
+.back-home-btn {
+    background: #e9f7ef;
+    color: #2c3e50;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    padding: 12px 24px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, box-shadow 0.3s, transform 0.2s;
+    box-shadow: none;
+    cursor: pointer;
+    outline: none;
+}
+.donate-form .amount-btn.selected,
+.donate-form .amount-btn:hover,
+.donate-form button[type="submit"]:hover,
+.donate-form button[type="submit"]:focus,
+.back-home-btn:hover,
+.back-home-btn:focus {
+    background: #e9f7ef;
+    color: #28a745;
+    /* Glow using the original text color (#2c3e50) */
+    box-shadow:
+        0 0 16px 0 #2c3e5055,
+        0 0 32px 4px #2c3e5015;
+}
+.donate-form .amount-btn:active,
+.donate-form button[type="submit"]:active,
+.back-home-btn:active {
+    background: #e9f7ef;
+    color: #28a745;
+    box-shadow: 0 0 8px 0 #2c3e5022;
+}
+.donate-form .secure {
+    display: flex;
+    align-items: center;
+    font-size: 0.97rem;
+    color: #6a6a6a;
+    margin-top: 1.2rem;
+    position: relative;
+    z-index: 1;
+    opacity: 0.85;
+    transition: opacity 0.2s;
+    margin-bottom: 1.2rem; 
+}
+ /* --- Media Queries for Responsiveness --- */        
+@media (max-width: 480px) {
+    .main-header {
+        padding: 10px 15px;
+        gap: 10px; 
+    }
+    
+    /* --- FINAL FIX STARTS HERE --- */
+    .logo {
+        /* Make text slightly larger than body text, but smaller than desktop */
+        font-size: 1.15rem; 
+        letter-spacing: normal;
+    }
+    
+    .logo::after {
+        /* Explicitly set a smaller size for the icon on mobile */
+        width: 1.1rem;
+        height: 1.1rem;
+        margin-left: 0.4rem;
+        /* Fine-tune vertical position */
+        transform: translateY(-1px);
+    }
+    /* --- FINAL FIX ENDS HERE --- */
+     .back-home-btn {
+        font-size: 0.8em;
+        padding: 8px 12px;
+        letter-spacing: normal;
+    }
+     .donate-form .amount-btn,
+    .donate-form button[type="submit"] {
+        font-size: 0.85em;
+        padding: 8px 15px;
+    }
+     .donate-form .amount-options {
+        gap: 0.5rem;
+    }
+    
+    .donate-container {
+        padding: 2rem 1.5rem;
+    }
+    .donate-container h1 {
+        font-size: 1.8rem;
+    }
+    .donate-container p {
+        font-size: 0.9rem;
+    }
+    .bg-animation__circle {
+        opacity: 0.18; /* Slightly higher opacity for smaller screens */
+    }
+
+    .bg-animation__circle:nth-child(1) {
+        width: 200px;
+        height: 200px;
+        top: -5%;
+        left: -20%;
+    }
+
+    .bg-animation__circle:nth-child(2) {
+        width: 240px;
+        height: 240px;
+        bottom: -5%;
+        right: -20%;
+    }
+
+    .bg-animation__circle:nth-child(3) {
+        width: 160px;
+        height: 160px;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    @keyframes floatCircle {
+        0% {
+            transform: translate(0, 0) scale(1);
+        }
+        33% {
+            transform: translate(20px, -20px) scale(1.1);
+        }
+        66% {
+            transform: translate(-15px, 15px) scale(0.9);
+        }
+        100% {
+            transform: translate(0, 0) scale(1);
+        }
+    }        
+}
+
+/* Add these new styles */
+/* Update only the new bank details styles */
+.bank-details {
+    margin-top: 30px;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: none;
+    animation: fadeIn 0.7s cubic-bezier(.4,0,.2,1);
+    transition: box-shadow 0.5s cubic-bezier(.4,0,.2,1), transform 0.3s;
+}
+
+.bank-details:hover {
+    box-shadow: 0 0 12px 0 rgba(40, 167, 69, 0.12), 0 4px 24px rgba(42, 122, 228, 0.07);
+    transform: translateY(-2px);
+}
+
+.bank-info {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: #fafbfc;
+    border-radius: 7px;
+    border: 1.5px solid #d0d0d0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bank-info:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(42,122,228,0.08);
+}
+
+.bank-info p {
+    margin: 12px 0;
+    font-size: 1rem;
+    color: #2c3e50;
+    line-height: 1.5;
+}
+
+
+
+.transfer-instructions {
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: #fafbfc;
+    border-radius: 7px;
+    border: 1.5px solid #d0d0d0;
+}
+
+.transfer-instructions p {
+    margin: 10px 0;
+    color: #2c3e50;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+
+/* Update the confirmation button to match theme */
+.bank-details .submit-btn {
+    background: #e9f7ef;
+    color: #2c3e50;
+    width: 100%;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+    transition: background 0.2s, color 0.2s, box-shadow 0.3s, transform 0.2s;
+    margin-top: 1.5rem;
+}
+
+.bank-details .submit-btn:hover {
+    background: #e9f7ef;
+    color: #28a745;
+    box-shadow: 0 0 16px 0 rgba(44, 62, 80, 0.33);
+    transform: translateY(-1px);
+}
+
+.bank-details .submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 0 8px 0 rgba(44, 62, 80, 0.2);
+}
+
+.confirm-btn {
+    background: #28a745;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.confirm-btn:hover {
+    background: #218838;
+}
+
+/* Add or update button styles */
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #218838;
+    transform: translateY(-1px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Add this to your existing button styles */
+.continue-btn {
+    margin-top: 20px;
+    background: #28a745;
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.continue-btn:hover {
+    background: #218838;
+    transform: translateY(-1px);
+}
+
+.continue-btn:active {
+    transform: translateY(0);
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
